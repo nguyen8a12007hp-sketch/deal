@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Profile Settings</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #F9F9F9;
+      font-size: 16px;
+      font-weight: 400;
+      color: #000000;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .layout-container {
+      display: flex;
+      height: 1024px;
+      width: 100%;
+    }
+
+    .sidebar {
+      width: 78px;
+      height: 100%;
+      background-color: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .sidebar-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 159px;
+      width: 100%;
+    }
+
+    .sidebar-menu-item {
+      width: 100%;
+      height: 58px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .sidebar-menu-item img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .sidebar-menu-item.active {
+      background: linear-gradient(269.84deg, #bed0f3 -38.97%, rgba(65, 130, 249, 0.00520833) 90.01%);
+    }
+
+    .main-content {
+      width: 94%;
+      padding: 32px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 72px;
+    }
+
+    .welcome-message {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2px;
+      width: 233px;
+      height: 100%;
+      margin: 2px 0;
+    }
+
+    .welcome-message p {
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .search-section {
+      width: 498px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .search-input-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 12px;
+      width: 354px;
+      height: 100%;
+      border-radius: 10px;
+      background-color: #FFFFFF;
+    }
+
+    .search-input-group img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .search-input-group input {
+      border: none;
+      outline: none;
+      color: #ADA7A7;
+      width: 300px;
+      background: transparent;
+    }
+
+    .topbar-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 10px;
+      background-color: #FFFFFF;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .topbar-icon img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .user-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+    }
+
+    .profile-section {
+      background-color: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 856px;
+      box-sizing: border-box;
+      border-radius: 8px;
+    }
+
+    .profile-banner {
+      width: 100%;
+      height: 100px;
+      margin: 0;
+    }
+
+    .profile-banner img {
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .profile-card {
+      height: 653px;
+      background-color: #FFFFFF;
+      padding: 32px;
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .profile-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .profile-header-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .user-avatar-large {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .user-info {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .user-info p {
+      margin: 0;
+    }
+
+    .btn-edit-profile {
+      background-color: #4182F9;
+      color: #FFFFFF;
+      border: none;
+      padding: 12px 32px;
+      border-radius: 8px;
+      height: 44px;
+      width: 93px;
+      cursor: pointer;
+    }
+
+    .profile-form {
+      height: 314px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 32px;
+    }
+
+    .profile-form label {
+      font-weight: 400;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .form-select-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      background-color: #F9F9F9;
+      border-radius: 8px;
+    }
+
+    .form-select-box p {
+      opacity: 0.4;
+      margin: 0;
+    }
+
+    .form-select-box img {
+      width: 16px;
+      height: 16px;
+    }
+
+    .email-card {
+      width: 266px;
+      height: 177px;
+      background-color: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .email-card-header {
+      width: 100%;
+      height: 54px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .email-item {
+      width: 100%;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .email-item-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background-color: rgba(65, 130, 249, 0.1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .email-item-icon img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .email-item-details {
+      width: 198px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .email-item-details p {
+      margin: 0;
+    }
+
+    .btn-add-email {
+      width: 209px;
+      height: 44px;
+      background-color: rgba(65, 130, 249, 0.1);
+      border-radius: 8px;
+      border: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      color: #4182F9;
+      cursor: pointer;
+    }
+
+    .btn-add-email p {
+      margin: 0;
+      color: inherit;
+      font-size: inherit;
+      font-weight: inherit;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout-container">
+    <div class="sidebar">
+      <div class="sidebar-menu">
+        <div class="sidebar-menu-item active"><img src="element-4.png" /></div>
+        <div class="sidebar-menu-item"><img src="graph.png" /></div>
+        <div class="sidebar-menu-item"><img src="medal-star.png" /></div>
+        <div class="sidebar-menu-item"><img src="messages.png" /></div>
+        <div class="sidebar-menu-item"><img src="setting-2.png" /></div>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <header class="topbar">
+        <div class="welcome-message">
+          <p style="color: #3E435D; font-weight: 500; font-size: 24px;">Welcome, Amanda</p>
+          <p style="color: #ADA7A7; font-weight: 200;">Tue, 07 June 2022</p>
+        </div>
+        <div class="search-section">
+          <div class="search-input-group">
+            <img src="search.png" alt="Search">
+            <input type="text" placeholder="Search">
+          </div>
+          <div class="topbar-icon"><img src="bell.png"></div>
+          <div class="topbar-icon"><img src="picture.png"></div>
+        </div>
+      </header>
+
+      <section class="profile-section">
+        <div class="profile-banner"><img src="color.png"></div>
+
+        <div class="profile-card">
+          <div class="profile-header">
+            <div class="profile-header-left">
+              <img src="avatar.png" alt="Avatar" class="user-avatar-large" />
+              <div class="user-info">
+                <p style="font-size: 20px; font-weight: 500;">Alexa Rawles</p>
+                <p style="opacity: 0.5;">alexarawles@gmail.com</p>
+              </div>
+            </div>
+            <button class="btn-edit-profile">Edit</button>
+          </div>
+
+          <form class="profile-form">
+            <div>
+              <label for="fullname">Full Name</label>
+              <div class="form-select-box">
+                <p>Your First Name</p>
+                <img src="dropdown.png" alt="Dropdown" />
+              </div>
+            </div>
+            <div>
+              <label for="nickname">Nick Name</label>
+              <div class="form-select-box">
+                <p>Your Nick Name</p>
+                <img src="dropdown.png" alt="Dropdown" />
+              </div>
+            </div>
+            <div>
+              <label for="gender">Gender</label>
+              <div class="form-select-box">
+                <p>Your Gender</p>
+                <img src="dropdown.png" alt="Dropdown" />
+              </div>
+            </div>
+            <div>
+              <label for="country">Country</label>
+              <div class="form-select-box">
+                <p>Your Country</p>
+                <img src="dropdown.png" alt="Dropdown" />
+              </div>
+            </div>
+            <div>
+              <label for="language">Language</label>
+              <div class="form-select-box">
+                <p>Your Language</p>
+                <img src="dropdown.png" alt="Dropdown" />
+              </div>
+            </div>
+            <div>
+              <label for="timezone">Time Zone</label>
+              <div class="form-select-box">
+                <p>Your Time Zone</p>
+                <img src="dropdown.png" alt="Dropdown" />
+              </div>
+            </div>
+          </form>
+
+          <div class="email-card">
+            <div class="email-card-header">
+              <p style="font-size: 18px; font-weight: 500;">My email Address</p>
+            </div>
+            <div class="email-item">
+              <div class="email-item-icon"><img src="Vector.png" alt="Email icon" /></div>
+              <div class="email-item-details">
+                <p>alexarawles@gmail.com</p>
+                <p style="opacity: 0.5;">1 month ago</p>
+              </div>
+            </div>
+            <button class="btn-add-email"><p>+Add Email Address</p></button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</body>
+</html>
